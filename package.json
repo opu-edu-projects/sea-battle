@@ -13,7 +13,12 @@
     "jade": "~1.11.0",
     "less-middleware": "1.0.x",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "socket.io": "*",
+    "log4js": "*",
+    "lodash": "*",
+    "jsonschema": "*",
+    "node-uuid": "*"
   },
   "devDependencies": {
     "grunt": "*",
