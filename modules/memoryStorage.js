@@ -17,11 +17,11 @@ Storage.prototype.all = function() {
 };
 
 Storage.prototype.get = function(key) {
-    return memory[this.buildKey(key)];
+    return memory[this.site][key];
 };
 
 Storage.prototype.put = function(key, val) {
-    memory[this.buildKey(key)] = val;
+    memory[this.site][key] = val;
 };
 
 Storage.prototype.find = function(params) {
@@ -29,13 +29,13 @@ Storage.prototype.find = function(params) {
 };
 
 Storage.prototype.remove = function(key) {
-    delete memory[this.buildKey(key)];
-};
-
-Storage.prototype.buildKey = function(key) {
-    return this.site + ":" + key;
+    delete memory[this.site][key];
 };
 
 module.exports = (site) => {
     return new Storage(site);
+};
+
+module.exports.dump = () => {
+    return memory;
 };
