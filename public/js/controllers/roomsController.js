@@ -7,8 +7,7 @@
 
 var roomsController = angular.module('roomsController', []);
 
-roomsController.controller('RoomList', ['$scope', 'Room',
+roomsController.controller('roomsList', ['$scope', 'Room',
     function($scope, Room) {
         $scope.rooms = Room.query();
-        console.log($scope.rooms);
     }]);
