@@ -19,18 +19,5 @@
     "lodash": "*",
     "jsonschema": "*",
     "node-uuid": "*"
-  },
-  "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-concat": "*",
-    "grunt-contrib-copy": "*",
-    "grunt-contrib-cssmin": "*",
-    "grunt-contrib-less": "*",
-    "grunt-contrib-requirejs": "*",
-    "grunt-file-append": "*",
-    "grunt-text-replace": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-usemin": "*"
   }
 }

@@ -13,7 +13,9 @@ var app = angular.module('app', [
 app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/room', {
-                controller: 'RoomList'
+            when('/', {
+                controller: 'roomsList'
+            }).otherwise({
+                redirectTo: '/'
             });
     }]);
