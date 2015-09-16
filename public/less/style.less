@@ -1,0 +1,267 @@
+@image-path: "../img";
+@section-color: #f8f8f8;
+@border-color: #e7e7e7;
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 700;
+}
+
+.topnav {
+  font-size: 14px;
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.intro-header {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  color: @section-color;
+  background: url("@{image-path}/bg.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.intro-message {
+  position: relative;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+  margin: 0;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  font-size: 5em;
+}
+
+.intro-divider {
+  width: 400px;
+  border-top: 1px solid @section-color;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+  .intro-message {
+    padding-bottom: 15%;
+  }
+
+  .intro-message > h1 {
+    font-size: 3em;
+  }
+
+  ul.intro-social-buttons > li {
+    display: block;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  ul.intro-social-buttons > li:last-child {
+    margin-bottom: 0;
+  }
+
+  .intro-divider {
+    width: 100%;
+  }
+} 
+
+.content-section-a {
+  padding: 50px 0;
+  background-color: @section-color;
+}
+
+.content-section-b {
+  padding: 50px 0;
+  border-top: 1px solid @border-color;
+  border-bottom: 1px solid @border-color;
+}
+
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+  float: left;
+  width: 250px;
+  border-top: 3px solid @border-color;
+}
+
+footer {
+  padding: 50px 0;
+  background-color: @section-color;
+}
+
+p.copyright {
+  margin: 15px 0 0;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+  outline: 0;
+  color: #18bc9c;
+}
+
+section {
+  padding: 100px 0;
+
+  h2 {
+    margin: 0;
+    font-size: 3em;
+  }
+}
+
+section.success {
+  color: #fff;
+  background: #18bc9c;
+
+  a,
+  a:hover,
+  a:focus,
+  a:active,
+  a.active {
+    outline: 0;
+    color: #2c3e50;
+  }
+}
+
+@media(max-width:767px) {
+  section {
+    padding: 75px 0;
+  }
+
+  section.first {
+    padding-top: 75px;
+  }
+}
+
+.btn-outline {
+  margin-top: 15px;
+  border: solid 2px #fff;
+  font-size: 20px;
+  color: #fff;
+  background: 0 0;
+  transition: all .3s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    border: solid 2px #fff;
+    color: #18bc9c;
+    background: #fff;
+  }
+}
+
+.floating-label-form-group {
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: .5em;
+  border-bottom: 2px solid @border-color;
+
+  input, textarea {
+    z-index: 1;
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+    border: 0;
+    border-radius: 0;
+    font-size: 1.5em;
+    background: 0 0;
+    box-shadow: none!important;
+    resize: none;
+  }
+
+  label {
+    display: block;
+    z-index: 0;
+    position: relative;
+    top: 2em;
+    margin: 0;
+    font-size: .85em;
+    line-height: 1.764705882em;
+    vertical-align: middle;
+    vertical-align: baseline;
+    opacity: 0;
+    -webkit-transition: top .3s ease,opacity .3s ease;
+    -moz-transition: top .3s ease,opacity .3s ease;
+    -ms-transition: top .3s ease,opacity .3s ease;
+    transition: top .3s ease,opacity .3s ease;
+  }
+}
+
+.floating-label-form-group::not(:first-child) {
+  padding-left: 14px;
+  border-left: 1px solid #eee;
+}
+
+.floating-label-form-group-with-value label {
+  top: 0;
+  opacity: 1;
+}
+
+.floating-label-form-group-with-focus label {
+  color: #18bc9c;
+}
+
+.btn {
+  &:focus,
+  &:active,
+  .active {
+    outline: 0;
+  }
+}
+
+.scroll-top {
+  z-index: 1049;
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  width: 50px;
+  height: 50px;
+
+  .btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .btn:focus {
+    outline: 0;
+  }
+}
+
+.list-rooms {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.content-section-a, .content-section-b {
+  min-height: 600px;
+}
+
+#create-room {
+  font-weight: normal;
+}

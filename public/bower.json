@@ -1,0 +1,20 @@
+{
+  "name": "sea-battle",
+  "version": "0.0.0",
+  "homepage": "https://github.com/opu-edu-projects/sea-battle",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.4.5",
+    "angular-resource": "~1.4.5",
+    "angular-route": "~1.4.5",
+    "bootstrap": "~3.3.5"
+  }
+}
