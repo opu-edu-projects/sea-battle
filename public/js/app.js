@@ -5,6 +5,7 @@
 
 var app = angular.module('app', [
     'ngRoute',
+    '',
 
     'roomsController',
     'roomService'

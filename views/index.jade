@@ -8,9 +8,9 @@ block content
         a(class="navbar-brand topnav", href="/") Sea Battle
       .collapse.navbar-collapse#bs-example-navbar-collapse-1
         ul.nav.navbar-nav.navbar-right
-          li: a(href="#about") About
-          li: a(href="#create-game") Create Game
-          li: a(href="#start-game") Start Game
+          li: a(href="#about", class="page-scroll") About
+          li: a(href="#create-game", class="page-scroll") Create Game
+          li: a(href="#start-game", class="page-scroll") Start Game
   a(name="about")
   .intro-header
     .container
@@ -21,7 +21,7 @@ block content
             h3 Начать игру прямой сейчас?
             hr.intro-divider
             ul.list-inline.intro-social-buttons
-              li: a(href="#start-game", class="btn btn-default")
+              li(class="page-scroll"): a(href="#start-game", class="btn btn-default")
                 i.fa.fa-twitter.fa-fw
                 span.network-name Start Game
   a(name="create-game")
@@ -70,44 +70,34 @@ block content
           .clearfix
           p.lead Вы можете выбрать комнату из списка и присоединиться к игре введя пароль.
         .col-lg-5.col-sm-pull-6.col-sm-6
-          form(name="create-room", id="create-room")
+          form(name="search-room", id="search-room")
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
-                label Нзвание игры
-                input(type="text", class="form-control", placeholder="Название игры")
+                i.glyphicon.glyphicon-search
+                input(type="text", class="form-control", placeholder="Введите название игры...")
                 p.help-block.error-block
           br
           ul.list-group.list-rooms.overflow-y-scroll
-            li.list-group-item Name room #1
-              span.badge 1
-            li.list-group-item Name room #2
-              span.badge 2
-            li.list-group-item Name room #3
-              span.badge 3
-            li.list-group-item Name room #4
-              span.badge 4
-            li.list-group-item Name room #5
-              span.badge 5
-            li.list-group-item Name room #1
-              span.badge 1
-            li.list-group-item Name room #2
-              span.badge 2
-            li.list-group-item Name room #3
-              span.badge 3
-            li.list-group-item Name room #4
-              span.badge 4
-            li.list-group-item Name room #5
-              span.badge 5
-            li.list-group-item Name room #1
-              span.badge 1
-            li.list-group-item Name room #2
-              span.badge 2
-            li.list-group-item Name room #3
-              span.badge 3
-            li.list-group-item Name room #4
-              span.badge 4
-            li.list-group-item Name room #5
-              span.badge 5
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
   footer
     .container
       .row
