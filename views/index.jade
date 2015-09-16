@@ -1,5 +1,110 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  //- Navigation
+  nav(class="navbar navbar-default navbar-fixed-top topnav", role="navigation")
+    .container.topnav
+      .navbar-header
+        a(class="navbar-brand topnav", href="/") Sea Battle
+      .collapse.navbar-collapse#bs-example-navbar-collapse-1
+        ul.nav.navbar-nav.navbar-right
+          li: a(href="#about", class="page-scroll") About
+          li: a(href="#create-game", class="page-scroll") Create Game
+          li: a(href="#start-game", class="page-scroll") Start Game
+  a(name="about")
+  .intro-header
+    .container
+      .row
+        .col-lg-12
+          .intro-message
+            h1 Sea Battle
+            h3 Начать игру прямой сейчас?
+            hr.intro-divider
+            ul.list-inline.intro-social-buttons
+              li(class="page-scroll"): a(href="#start-game", class="btn btn-default")
+                i.fa.fa-twitter.fa-fw
+                span.network-name Start Game
+  a(name="create-game")
+  .content-section-a
+    .container
+      .row
+        .col-lg-5.col-sm-6
+          h2 Создать свою игру
+          hr.section-heading-spacer
+          .clearfix
+          p.lead Вы можете создать совю комнату для игры с другом, а так же вы сможете переписыватся с ним с помощью чата. Для этого вам нужно заполнить форму создания комнаты.
+        .col-lg-5.col-lg-offset-2.col-sm-6
+          form(name="create-room", id="create-room")
+            .row.control-group
+              .form-group.col-xs-12.floating-label-form-group.controls
+                label Имя игрока
+                input(type="text", class="form-control", placeholder="Имя игрока")
+                p.help-block.error-block
+            .row.control-group
+              .form-group.col-xs-12.floating-label-form-group.controls
+                label Название комнаты
+                input(type="text", class="form-control", placeholder="Название комнаты")
+                p.help-block.error-block
+            .row.control-group
+              .form-group.col-xs-12.floating-label-form-group.controls
+                label Пароль
+                input(type="text", class="form-control", placeholder="Пароль")
+                p.help-block.error-block
+            .row.control-group
+              .form-group.col-xs-12.floating-label-form-group.controls
+                label Подтверждение пароля
+                input(type="text", class="form-control", placeholder="Подтверждение пароля")
+                p.help-block.error-block
+            br
+            #success
+            .row
+              .form-group.col-xs-12
+                button(type="submit", class="btn btn-default btn-lg") Создать
+  a(name="start-game")
+  .content-section-b(ng-controller="roomsList")
+    .container
+      .row
+        .col-lg-5.col-lg-offset-1.col-sm-push-6.col-sm-6
+          h2 Выбрать противника
+          hr.section-heading-spacer
+          .clearfix
+          p.lead Вы можете выбрать комнату из списка и присоединиться к игре введя пароль.
+        .col-lg-5.col-sm-pull-6.col-sm-6
+          form(name="search-room", id="search-room")
+            .row.control-group
+              .form-group.col-xs-12.floating-label-form-group.controls
+                i.glyphicon.glyphicon-search
+                input(type="text", class="form-control", placeholder="Введите название игры...")
+                p.help-block.error-block
+          br
+          ul.list-group.list-rooms.overflow-y-scroll
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
+            li.list-group-item Name room #1 &nbsp;
+              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
+              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+            li.list-group-item Name room #2 &nbsp;
+              i.glyphicon.glyphicon-share
+  footer
+    .container
+      .row
+        .col-lg-12
+          ul.list-inline
+            li: a(href="#about") Acout
+            li.footer-menu-divider &sdot;
+            li: a(href="#create-game") Create Game
+            li.footer-menu-divider &sdot;
+            li: a(href="#start-game") Start Game
