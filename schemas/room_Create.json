@@ -1,5 +1,5 @@
 {
-  "id": "room",
+  "id": "room_create",
   "type": "object",
   "properties": {
     "name": {
@@ -8,6 +8,10 @@
     "isPrivate": {
       "type": "boolean",
       "default": false
+    },
+    "nickname": {
+      "type": "string",
+      "required": true
     },
     "password": {
       "type": "string",

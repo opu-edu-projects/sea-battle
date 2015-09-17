@@ -1,5 +1,5 @@
 {
-  "id": "room",
+  "id": "room_join",
   "type": "object",
   "properties": {
     "id": {
@@ -7,18 +7,9 @@
       "pattern": "^[\\w0-9]{8}(?:-[\\w0-9]{4}){3}-[\\w0-9]{12}$",
       "required": true
     },
-    "name": {
-      "type": "string",
-      "required": true
-    },
     "nickname": {
       "type": "string",
       "required": true
-    },
-    "isPrivate": {
-      "type": "boolean",
-      "required": true,
-      "default": false
     },
     "password": {
       "type": "string",

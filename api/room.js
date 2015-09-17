@@ -7,6 +7,7 @@ var storage = require("../modules/memoryStorage")("room");
 var mdump = require("../modules/memoryStorage").dump;
 var uuid = require('node-uuid');
 var _ = require("lodash");
+var schema = require("../modules/schema");
 
 var room = {};
 
@@ -14,9 +15,7 @@ var room = {};
 room.index = cb => {
     logger.debug(mdump());
     var rooms = storage.all();
-    var cleanRooms = _.chain(rooms).map(room => _.omit(room, "password")).values();
-
-    return cb(null, cleanRooms);
+    return cb(null, rooms);
 };
 
 room.create = (room, cb) => {
@@ -25,6 +24,11 @@ room.create = (room, cb) => {
     storage.put(guid, room);
 
     return cb(null, room);
+};
+
+room.join = (joinInfo, cb) => {
+
+    cb();
 };
 
 

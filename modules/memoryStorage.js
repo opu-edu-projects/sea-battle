@@ -12,8 +12,9 @@ var Storage = function(site) {
     memory[this.site] = {};
 };
 
+
 Storage.prototype.all = function() {
-    return memory[this.site];
+    return _.values(memory[this.site]);
 };
 
 Storage.prototype.get = function(key) {
