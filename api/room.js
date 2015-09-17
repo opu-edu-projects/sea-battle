@@ -4,7 +4,6 @@
 
 var logger = require("log4js").getLogger("api/room");
 var storage = require("../modules/memoryStorage")("room");
-var mdump = require("../modules/memoryStorage").dump;
 var uuid = require('node-uuid');
 var _ = require("lodash");
 var schema = require("../modules/schema");
@@ -13,7 +12,6 @@ var room = {};
 
 
 room.index = cb => {
-    logger.debug(mdump());
     var rooms = storage.all();
     return cb(null, rooms);
 };

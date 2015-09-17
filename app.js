@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
+var mkdirp = require("mkdirp");
 
 var app = express();
 
@@ -65,5 +66,6 @@ app.setupSocket = (server) => {
     });
 };
 
+mkdirp.sync("./data/");
 
 module.exports = app;

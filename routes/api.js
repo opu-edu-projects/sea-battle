@@ -84,7 +84,6 @@ router.post("/:model/:method", (req, res) => {
 
 
 function filter(data, schemaName) {
-    logger.warn(data);
     if (_.isArray(data)) {
         return _.map(data, item => schema.filter(item, schemaName));
     }
