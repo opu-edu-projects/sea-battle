@@ -16,15 +16,23 @@ room.index = cb => {
     return cb(null, rooms);
 };
 
-room.create = (room, cb) => {
+room.create = (roomInfo, cb) => {
     var guid = uuid.v1();
+    var room = schema.filter(roomInfo, "room");
     room.id = guid;
-    storage.put(guid, room);
+    room.players = [roomInfo.nickname];
 
+    storage.put(guid, room);
     return cb(null, room);
 };
 
 room.join = (joinInfo, cb) => {
+    var room = storage.get(joinInfo.id);
+    if (room.isFull) {
+        var errMsg = util.format("Room %s is already full", joinInfo.id);
+        return cb(errMsg);
+    }
+    // todo: add player to room
 
     cb();
 };

@@ -11,9 +11,17 @@
       "type": "string",
       "required": true
     },
-    "nickname": {
-      "type": "string",
-      "required": true
+    "players": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "isFull": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     },
     "isPrivate": {
       "type": "boolean",

@@ -25,7 +25,8 @@ var dbs = {};
 
 var Storage = function(scope) {
     this.scope = scope;
-    dbs[this.scope] = createDB(scope);
+    if (!dbs[this.scope])
+        dbs[this.scope] = createDB(scope);
 };
 
 Storage.prototype.all = function() {
