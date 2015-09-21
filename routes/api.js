@@ -11,10 +11,11 @@ var router = express.Router();
 router.get("/:model", (req, res) => {
     var model = req.params["model"];
     var retSchema = model + "_get";
+    var scope = collectScopeObject(req);
     var api = require("../api/" + model);
-    api.index((err, data) => {
+    api.index(scope, (err, data) => {
         if (err) {
-            return res.status(503).json({ errors: [JSON.stringify(err)] });
+            return res.status(503).json({ errors: [err] });
         }
         var dto = filter(data, retSchema);
         return res.json(dto);
@@ -25,11 +26,12 @@ router.get("/:model/:method", (req, res) => {
     var model = req.params["model"];
     var method = req.params["model"];
     var retSchema = model + "_" + method;
+    var scope = collectScopeObject(req);
     var api = require("../api/" + model);
     if (_.isFunction(api[method])) {
-        api[method]((err, data) => {
+        api[method](scope, (err, data) => {
             if (err) {
-                return res.status(503).json({ errors: [JSON.stringify(err)] });
+                return res.status(503).json({ errors: [err] });
             }
             var dto = filter(data, retSchema);
             return res.json(dto);
@@ -49,10 +51,11 @@ router.post("/:model", (req, res) => {
         logger.debug(validation.errors);
         return res.status(503).json({ errors: validation.errors });
     }
+    var scope = collectScopeObject(req);
     var api = require("../api/" + req.params["model"]);
-    api.create(req.body, (err, data) => {
+    api.create(scope, req.body, (err, data) => {
         if (err) {
-            return res.status(503).json({ errors: [JSON.stringify(err)] });
+            return res.status(503).json({ errors: [err] });
         }
         return res.json(data);
     });
@@ -62,17 +65,18 @@ router.post("/:model/:method", (req, res) => {
     var model = req.params["model"];
     var method = req.params["method"];
     var contentSchema = model + "_" + method;
-    var api = require("../api/" + model);
     var validation = schema.validate(req.body, contentSchema);
     if (validation.errors.length > 0) {
         logger.warn("Invalid object passed to model " + req.params["model"]);
         logger.debug(validation.errors);
         return res.status(503).json({ errors: validation.errors });
     }
+    var scope = collectScopeObject(req);
+    var api = require("../api/" + model);
     if (_.isFunction(api[method])) {
-        api[method](req.body, (err, data) => {
+        api[method](scope, req.body, (err, data) => {
             if (err) {
-                return res.status(503).json({ errors: [JSON.stringify(err)] });
+                return res.status(503).json({ errors: [err] });
             }
             return res.json(data);
         });
@@ -90,6 +94,22 @@ function filter(data, schemaName) {
     else {
         return schema.filter(data, schemaName);
     }
+}
+
+/**
+ @typedef {object} ScopeObject
+ @property {string} user - current user
+ /
+
+/**
+ * Collecting scope object from current request
+ * @param {Request} req Request to collect scope object from
+ * @return {ScopeObject} Returns collected scope object
+ */
+function collectScopeObject(req) {
+    var scope = {};
+    scope.user = req.user;
+    return scope;
 }
 
 module.exports = router;

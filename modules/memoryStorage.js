@@ -37,6 +37,11 @@ Storage.prototype.get = function(key) {
     return dbs[this.scope].data[key];
 };
 
+Storage.prototype.getAll = function(keys) {
+    var storage = dbs[this.scope].data;
+    return _.map(keys, key => storage[key]);
+};
+
 Storage.prototype.put = function(key, val) {
     dbs[this.scope].add(val, key);
 };

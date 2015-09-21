@@ -2,7 +2,7 @@
   "id": "room_join",
   "type": "object",
   "properties": {
-    "id": {
+    "roomId": {
       "type": "string",
       "pattern": "^[\\w0-9]{8}(?:-[\\w0-9]{4}){3}-[\\w0-9]{12}$",
       "required": true

@@ -16,7 +16,8 @@
       "required": true,
       "items": {
         "type": "string"
-      }
+      },
+      "default": []
     },
     "isFull": {
       "type": "boolean",
