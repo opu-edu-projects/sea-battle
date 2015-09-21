@@ -7,13 +7,13 @@ var _ = require("lodash");
 
 var microdb = require("nodejs-microdb");
 
-function createDB(scope) {
+function createDB(scope, noFlush) {
     return new microdb({
         "file": "./data/" + scope,     // The filename to save to, or empty for memory only
-        "savetime": 1, // In minutes, how often to flush to disk (approx)
+        "savetime": noFlush ? 0 : 1, // In minutes, how often to flush to disk (approx)
                         // Set this to 0 to diable auto-save.
         "datatype": 1,  // Which data-type: 0 = Array-based, 1 = Object-based
-        "flushonexit": true,   // Auto-flush when program quits.
+        "flushonexit": noFlush ? false : true,   // Auto-flush when program quits.
                                // I recommend you leave this on.
         "defalutClean": false // Auto-remove incomplete records on sort opertaions.
         // This is useful if your document type isn't consistent.
@@ -54,8 +54,14 @@ Storage.prototype.remove = function(key) {
     delete dbs[this.scope].del(key);
 };
 
-module.exports = (site) => {
-    return new Storage(site);
+/**
+ * Create a named storage
+ * @param {string} site Storage name
+ * @param {boolean} [noFlush] Do not flush data to disk
+ * @return {Storage}
+ */
+module.exports = (site, noFlush) => {
+    return new Storage(site, noFlush);
 };
 
 module.exports.dump = () => {
