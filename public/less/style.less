@@ -15,8 +15,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: 700;
+  font-family: "Nautilus Pompilius","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .topnav {
@@ -92,6 +91,14 @@ h6 {
   padding: 50px 0;
   border-top: 1px solid @border-color;
   border-bottom: 1px solid @border-color;
+
+  .panel-default {
+    border-radius: inherit;
+  }
+
+  .table > thead > tr > th {
+    border-bottom: 0;
+  }
 }
 
 .section-heading {
@@ -100,13 +107,17 @@ h6 {
 
 .section-heading-spacer {
   float: left;
-  width: 250px;
+  width: 200px;
   border-top: 3px solid @border-color;
 }
 
 footer {
-  padding: 50px 0;
+  padding: 40px 0;
   background-color: @section-color;
+  .brand {
+    float: right;
+    font-size: 25px;
+  }
 }
 
 p.copyright {
@@ -155,24 +166,6 @@ section.success {
   }
 }
 
-.btn-outline {
-  margin-top: 15px;
-  border: solid 2px #fff;
-  font-size: 20px;
-  color: #fff;
-  background: 0 0;
-  transition: all .3s ease-in-out;
-
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    border: solid 2px #fff;
-    color: #18bc9c;
-    background: #fff;
-  }
-}
-
 .floating-label-form-group {
   position: relative;
   margin-bottom: 0;
@@ -180,16 +173,7 @@ section.success {
   border-bottom: 2px solid @border-color;
 
   input, textarea {
-    z-index: 1;
-    position: relative;
-    padding-right: 0;
-    padding-left: 0;
-    border: 0;
-    border-radius: 0;
-    font-size: 1.5em;
-    background: 0 0;
-    box-shadow: none!important;
-    resize: none;
+    .input-textarea
   }
 
   label {
@@ -208,6 +192,19 @@ section.success {
     -ms-transition: top .3s ease,opacity .3s ease;
     transition: top .3s ease,opacity .3s ease;
   }
+}
+
+.input-textarea {
+  z-index: 1;
+  position: relative;
+  padding-right: 0;
+  padding-left: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 1.5em;
+  background: 0 0;
+  box-shadow: none!important;
+  resize: none;
 }
 
 .floating-label-form-group::not(:first-child) {
@@ -255,7 +252,17 @@ section.success {
 
 .list-rooms {
   max-height: 300px;
-  overflow: auto;
+  overflow-x: hidden;
+
+  table {
+    table-layout: fixed;
+
+    td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .content-section-a, .content-section-b {
@@ -269,16 +276,54 @@ section.success {
 #search-room {
   .glyphicon-search {
     position: absolute;
-    right: 0px;
-    padding: 20px 12px;
+    right: 16px;
+    top: 8px;
     pointer-events: none;
     color: #E7E7E9;
     font-size: 18px;
+  }
+
+  input {
+    .input-textarea;
+    padding-left: 10px;
+    padding-right: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 0px;
   }
 }
 
 .list-rooms {
   .glyphicon-share {
     float: right;
+    cursor: pointer;
+  }
+  .glyphicon-share, .glyphicon-lock {
+    color: #E7E7E9;
+  }
+
+  .glyphicon-share:hover {
+    color: #000;
+  }
+  .list-group-item {
+    border-radius: 0;
+  }
+}
+
+.divider {
+  border-top: 2px solid @border-color;
+  margin: 5px 0 5px 0;
+}
+
+.header-nav {
+  .navbar-brand {
+    color: #18bc9c;
+    font-size: 25px;
+  }
+  .navbar-right {
+    a:hover {
+      color: #18bc9c !important;
+    }
   }
 }

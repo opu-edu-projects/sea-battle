@@ -3,6 +3,6 @@
  */
 var animations = angular.module('animations', ['ngAnimate']);
 
-animations.animation('.phone', function() {
+animations.animation('.page', function() {
 
 });

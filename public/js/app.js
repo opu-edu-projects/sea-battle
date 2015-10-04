@@ -5,9 +5,8 @@
 
 var app = angular.module('app', [
     'ngRoute',
-    '',
-
-    'roomsController',
+    'app.directive',
+    'app.games',
     'roomService'
 ]);
 
@@ -15,7 +14,7 @@ app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/', {
-                controller: 'roomsList'
+                controller: 'gamesList'
             }).otherwise({
                 redirectTo: '/'
             });

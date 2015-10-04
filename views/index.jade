@@ -3,14 +3,14 @@ extends layout
 block content
   //- Navigation
   nav(class="navbar navbar-default navbar-fixed-top topnav", role="navigation")
-    .container.topnav
+    .container.topnav.header-nav
       .navbar-header
         a(class="navbar-brand topnav", href="/") Sea Battle
       .collapse.navbar-collapse#bs-example-navbar-collapse-1
         ul.nav.navbar-nav.navbar-right
-          li: a(href="#about", class="page-scroll") About
-          li: a(href="#create-game", class="page-scroll") Create Game
-          li: a(href="#start-game", class="page-scroll") Start Game
+          li: a(href="#about", 'smooth-scroll-on-click') About
+          li: a(href="#create-game", 'smooth-scroll-on-click') Create Game
+          li: a(href="#start-game", 'smooth-scroll-on-click') Start Game
   a(name="about")
   .intro-header
     .container
@@ -21,83 +21,141 @@ block content
             h3 Начать игру прямой сейчас?
             hr.intro-divider
             ul.list-inline.intro-social-buttons
-              li(class="page-scroll"): a(href="#start-game", class="btn btn-default")
-                i.fa.fa-twitter.fa-fw
+              li(class="page-scroll"): a(href="#start-game", class="btn btn-default", 'smooth-scroll-on-click')
                 span.network-name Start Game
   a(name="create-game")
-  .content-section-a
+  section.content-section-a
     .container
       .row
         .col-lg-5.col-sm-6
-          h2 Создать свою игру
           hr.section-heading-spacer
           .clearfix
+          h2.section-heading Создать свою игру
           p.lead Вы можете создать совю комнату для игры с другом, а так же вы сможете переписыватся с ним с помощью чата. Для этого вам нужно заполнить форму создания комнаты.
         .col-lg-5.col-lg-offset-2.col-sm-6
-          form(name="create-room", id="create-room")
+          form(name="create-room", id="create-room", data-ng-controller="gamesList")
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Имя игрока
-                input(type="text", class="form-control", placeholder="Имя игрока")
+                input(type="text", class="form-control", placeholder="Имя игрока", data-ng-model="game.creator")
                 p.help-block.error-block
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Название комнаты
-                input(type="text", class="form-control", placeholder="Название комнаты")
+                input(type="text", class="form-control", placeholder="Название комнаты", data-ng-model="game.name")
                 p.help-block.error-block
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Пароль
-                input(type="text", class="form-control", placeholder="Пароль")
+                input(type="text", class="form-control", placeholder="Пароль", data-ng-model="game.password")
                 p.help-block.error-block
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Подтверждение пароля
-                input(type="text", class="form-control", placeholder="Подтверждение пароля")
+                input(type="text", class="form-control", placeholder="Подтверждение пароля", data-ng-model="game.confirmPassword")
                 p.help-block.error-block
             br
             #success
             .row
               .form-group.col-xs-12
-                button(type="submit", class="btn btn-default btn-lg") Создать
+                button(type="submit", class="btn btn-default btn-lg", data-ng-click="create()") Создать игру
   a(name="start-game")
-  .content-section-b(ng-controller="roomsList")
+  section.content-section-b(ng-controller="gamesList")
     .container
       .row
         .col-lg-5.col-lg-offset-1.col-sm-push-6.col-sm-6
-          h2 Выбрать противника
           hr.section-heading-spacer
           .clearfix
+          h2.section-heading Выбрать противника
           p.lead Вы можете выбрать комнату из списка и присоединиться к игре введя пароль.
-        .col-lg-5.col-sm-pull-6.col-sm-6
-          form(name="search-room", id="search-room")
-            .row.control-group
-              .form-group.col-xs-12.floating-label-form-group.controls
-                i.glyphicon.glyphicon-search
-                input(type="text", class="form-control", placeholder="Введите название игры...")
-                p.help-block.error-block
-          br
-          ul.list-group.list-rooms.overflow-y-scroll
-            li.list-group-item Name room #1 &nbsp;
-              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
-              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-            li.list-group-item Name room #2 &nbsp;
-              i.glyphicon.glyphicon-share
-            li.list-group-item Name room #1 &nbsp;
-              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
-              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-            li.list-group-item Name room #2 &nbsp;
-              i.glyphicon.glyphicon-share
-            li.list-group-item Name room #1 &nbsp;
-              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
-              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-            li.list-group-item Name room #2 &nbsp;
-              i.glyphicon.glyphicon-share
-            li.list-group-item Name room #1 &nbsp;
-              i(title="Игра закрыта", class="glyphicon glyphicon-lock")
-              i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-            li.list-group-item Name room #2 &nbsp;
-              i.glyphicon.glyphicon-share
+        .col-lg-6.col-sm-pull-6.col-sm-6
+          .panel.panel-default
+            .panel-heading
+              form(name="search-room", id="search-room")
+                .row.control-group
+                  .form-group.col-xs-12.controls
+                    i.glyphicon.glyphicon-search
+                    input(type="text", class="form-control", placeholder="Поиск...")
+            table.table
+              thead
+                tr
+                  th(width="45%") Name room
+                  th(width="45%") Name creator
+                  th(width="10%")
+            div.list-rooms
+              table.table
+                tbody
+                  tr
+                    td(width="45%") Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td(width="45%") Name creator
+                    td(width="10%").filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+                  tr
+                    td Name room #1
+                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
+                    td Name creator
+                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
+
   footer
     .container
       .row
@@ -108,3 +166,4 @@ block content
             li: a(href="#create-game") Create Game
             li.footer-menu-divider &sdot;
             li: a(href="#start-game") Start Game
+          p.copyright.text-muted.small Copyright © Бомжары продакшн 2015.
