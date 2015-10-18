@@ -98,17 +98,21 @@ function filter(data, schemaName) {
 
 /**
  @typedef {object} ScopeObject
- @property {string} user - current user
+ @property {object} user - current user
+ @property {object} params - request query string
+ @property {object} query - request params
  /
 
 /**
  * Collecting scope object from current request
- * @param {Request} req Request to collect scope object from
+ * @param {object} req Request to collect scope object from
  * @return {ScopeObject} Returns collected scope object
  */
 function collectScopeObject(req) {
     var scope = {};
     scope.user = req.user;
+    scope.params = req.params;
+    scope.query = req.query;
     return scope;
 }
 
