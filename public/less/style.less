@@ -256,11 +256,27 @@ section.success {
 
   table {
     table-layout: fixed;
+    margin-bottom: 0;
 
     td {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+  }
+
+  .auth {
+    position: absolute;
+    background-color: #f5f5f5;
+    left: 0;
+    top: 0;
+    height: inherit;
+    width: inherit;
+
+    .btn-group {
+      button {
+        border-radius: 0;
+      }
     }
   }
 }
@@ -295,15 +311,16 @@ section.success {
 }
 
 .list-rooms {
-  .glyphicon-share {
+  .glyphicon-share, .glyphicon-lock {
     float: right;
     cursor: pointer;
   }
+
   .glyphicon-share, .glyphicon-lock {
     color: #E7E7E9;
   }
 
-  .glyphicon-share:hover {
+  .glyphicon-share:hover, .glyphicon-lock:hover {
     color: #000;
   }
   .list-group-item {
@@ -325,5 +342,24 @@ section.success {
     a:hover {
       color: #18bc9c !important;
     }
+  }
+}
+
+.error-block {
+  color: #e74c3c;
+}
+
+.auth-room {
+  .input-wrapper {
+    display: inline-block;
+    margin-right: 5px;
+
+    input {
+      margin-right: 5px;
+    }
+  }
+
+  button {
+    min-width: 77px;
   }
 }

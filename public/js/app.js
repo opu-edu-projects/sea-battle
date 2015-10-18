@@ -5,17 +5,22 @@
 
 var app = angular.module('app', [
     'ngRoute',
-    'app.directive',
-    'app.games',
-    'roomService'
+    'ui.bootstrap',
+    'app.directives',
+    'app.listRooms',
+    'app.authRoom',
+    'app.createRoom',
+    'app.roomService'
 ]);
 
 app.config(['$routeProvider',
     function($routeProvider) {
+        console.log("run app");
         $routeProvider.
             when('/', {
-                controller: 'gamesList'
+                controller: 'ListRoomsCtrl'
             }).otherwise({
                 redirectTo: '/'
             });
-    }]);
+    }
+]);

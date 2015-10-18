@@ -5,11 +5,13 @@
 
 /* Service for rooms */
 
-var roomService = angular.module('roomService', ['ngResource']);
+var roomService = angular.module('app.roomService', ['ngResource']);
 
 roomService.factory('Room', ['$resource',
     function($resource){
-        return $resource('api/room', {}, {
-            query: {method:'GET', isArray:true}
+        var room = $resource('api/room/:roomId', {roomId:'@id'}, {
+            'save':   {method:'POST'},
+            'query':  {method:'GET', isArray:true}
         });
+        return room;
     }]);

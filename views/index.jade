@@ -33,34 +33,58 @@ block content
           h2.section-heading Создать свою игру
           p.lead Вы можете создать совю комнату для игры с другом, а так же вы сможете переписыватся с ним с помощью чата. Для этого вам нужно заполнить форму создания комнаты.
         .col-lg-5.col-lg-offset-2.col-sm-6
-          form(name="create-room", id="create-room", data-ng-controller="gamesList")
+          form(name="createRoom",
+            id="create-room",
+            data-ng-controller="CreateRoomCtrl",
+            data-ng-submit="create(createRoom)"
+          )
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Имя игрока
-                input(type="text", class="form-control", placeholder="Имя игрока", data-ng-model="game.creator")
+                input(type="text",
+                  name="nickname",
+                  class="form-control",
+                  placeholder="Имя игрока",
+                  data-ng-model="room.nickname",
+                  required
+                )
                 p.help-block.error-block
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Название комнаты
-                input(type="text", class="form-control", placeholder="Название комнаты", data-ng-model="game.name")
+                input(type="text",
+                  name="name",
+                  class="form-control",
+                  placeholder="Название комнаты",
+                  data-ng-model="room.name",
+                  required
+                )
                 p.help-block.error-block
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Пароль
-                input(type="text", class="form-control", placeholder="Пароль", data-ng-model="game.password")
+                input(type="password",
+                  class="form-control",
+                  placeholder="Пароль",
+                  data-ng-model="room.password"
+                )
                 p.help-block.error-block
             .row.control-group
               .form-group.col-xs-12.floating-label-form-group.controls
                 label Подтверждение пароля
-                input(type="text", class="form-control", placeholder="Подтверждение пароля", data-ng-model="game.confirmPassword")
+                input(type="password",
+                  class="form-control",
+                  placeholder="Подтверждение пароля",
+                  data-ng-model="room.confirmPassword"
+                )
                 p.help-block.error-block
             br
             #success
             .row
               .form-group.col-xs-12
-                button(type="submit", class="btn btn-default btn-lg", data-ng-click="create()") Создать игру
+                button(type="submit", class="btn btn-default btn-lg") Создать игру
   a(name="start-game")
-  section.content-section-b(ng-controller="gamesList")
+  section.content-section-b(data-ng-controller="ListRoomsCtrl")
     .container
       .row
         .col-lg-5.col-lg-offset-1.col-sm-push-6.col-sm-6
@@ -75,87 +99,19 @@ block content
                 .row.control-group
                   .form-group.col-xs-12.controls
                     i.glyphicon.glyphicon-search
-                    input(type="text", class="form-control", placeholder="Поиск...")
-            table.table
-              thead
-                tr
-                  th(width="45%") Name room
-                  th(width="45%") Name creator
-                  th(width="10%")
+                    input(type="text", name="search", ng-model="search", class="form-control", placeholder="Поиск...")
             div.list-rooms
               table.table
-                tbody
-                  tr
-                    td(width="45%") Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td(width="45%") Name creator
-                    td(width="10%").filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-                  tr
-                    td Name room #1
-                      i(title="Приватная игра", class="glyphicon glyphicon-lock")
-                    td Name creator
-                    td.filterable-cell: i(title="Присоединиться к игре", class="glyphicon glyphicon-share")
-
+                tbody('def', data-selected="{{selectedIndex}}")
+                  tr(data-ng-repeat="room in rooms | filter:search", data-index="{{$index}}")
+                    td(width="45%") {{room.name}}
+                    td(width="45%") {{room.nickname}}
+                    td(width="10%")
+                      i(title="Присоединиться к игре",
+                        class="glyphicon",
+                        data-ng-class="{'glyphicon-share': !room.isPrivate, 'glyphicon-lock': room.isPrivate}",
+                        data-ng-click="onClick($index)"
+                      )
   footer
     .container
       .row
@@ -167,3 +123,21 @@ block content
             li.footer-menu-divider &sdot;
             li: a(href="#start-game") Start Game
           p.copyright.text-muted.small Copyright © Бомжары продакшн 2015.
+
+  script(type="text/ng-template" id="private-auth-tpl")
+    td(colspan="3", class="auth-room")
+      form(data-ng-controller="AuthRoomCtrl")
+        div(class="input-wrapper")
+          input(type="text", name="nickname")
+          input(type="password", name="password")
+        div(class="btn-group", role="group")
+            button(type="button", class="btn btn-default", ng-click="success()") Войти
+            button(type="button", class="btn btn-default", ng-click="cancel()") Отмена
+  script(type="text/ng-template" id="auth-tpl")
+    td(colspan="3", class="auth-room")
+      form(data-ng-controller="AuthRoomCtrl")
+        div(class="input-wrapper")
+          input(type="text", name="nickname")
+        div(class="btn-group", role="group")
+          button(type="button", class="btn btn-default", ng-click="success()") Войти
+          button(type="button", class="btn btn-default", ng-click="cancel()") Отмена
