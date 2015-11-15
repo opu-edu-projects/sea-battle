@@ -4,16 +4,18 @@
 
 var createRoom = angular.module('app.authRoom', []);
 
-createRoom.controller('AuthRoomCtrl', ['$scope', 'Room',
-    function($scope, Room) {
+createRoom.controller('AuthRoomCtrl', ['$scope', 'Auth',
+    function($scope, Auth) {
 
         $scope.success = function () {
-            console.log("success");
+            var data = angular.copy($scope.auth);
+            data.roomId = $scope.$parent.selectedId;
+            var auth = new Auth(data);
+            auth.$auth();
         };
 
         $scope.cancel = function () {
-            console.log('cancel');
-            $scope.$parent.selectedIndex = undefined;
+            $scope.$parent.selectedId = undefined;
         };
     }
 ]);

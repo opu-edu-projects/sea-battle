@@ -102,15 +102,15 @@ block content
                     input(type="text", name="search", ng-model="search", class="form-control", placeholder="Поиск...")
             div.list-rooms
               table.table
-                tbody('def', data-selected="{{selectedIndex}}")
-                  tr(data-ng-repeat="room in rooms | filter:search", data-index="{{$index}}")
+                tbody('def', data-selected="{{selectedId}}")
+                  tr(data-ng-repeat="room in rooms | filter:search", data-id="{{room.id}}")
                     td(width="45%") {{room.name}}
                     td(width="45%") {{room.nickname}}
                     td(width="10%")
                       i(title="Присоединиться к игре",
                         class="glyphicon",
                         data-ng-class="{'glyphicon-share': !room.isPrivate, 'glyphicon-lock': room.isPrivate}",
-                        data-ng-click="onClick($index)"
+                        data-ng-click="onClick(room.id)"
                       )
   footer
     .container
@@ -128,8 +128,8 @@ block content
     td(colspan="3", class="auth-room")
       form(data-ng-controller="AuthRoomCtrl")
         div(class="input-wrapper")
-          input(type="text", name="nickname")
-          input(type="password", name="password")
+          input(type="text", name="nickname", placeholder="Nickname", ng-model="auth.nickname")
+          input(type="password", name="password", placeholder="Password", ng-model="auth.password")
         div(class="btn-group", role="group")
             button(type="button", class="btn btn-default", ng-click="success()") Войти
             button(type="button", class="btn btn-default", ng-click="cancel()") Отмена
@@ -137,7 +137,7 @@ block content
     td(colspan="3", class="auth-room")
       form(data-ng-controller="AuthRoomCtrl")
         div(class="input-wrapper")
-          input(type="text", name="nickname")
+          input(type="text", name="nickname", placeholder="Nickname", ng-model="auth.nickname")
         div(class="btn-group", role="group")
           button(type="button", class="btn btn-default", ng-click="success()") Войти
           button(type="button", class="btn btn-default", ng-click="cancel()") Отмена

@@ -10,7 +10,8 @@ var app = angular.module('app', [
     'app.listRooms',
     'app.authRoom',
     'app.createRoom',
-    'app.roomService'
+    'app.roomService',
+    'app.authService'
 ]);
 
 app.config(['$routeProvider',

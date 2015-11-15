@@ -27,7 +27,12 @@ angular.module('app.directives', []).
                 attrs.$observe('selected', function(value) {
                     var authRoom = element.find('.auth-room');
                     var tr = element.find('.auth-room').parent();
-                    var room = $scope.rooms[value];
+                    var room = null;
+                    $scope.rooms.forEach(function (item) {
+                        if (item.id === value) {
+                            room = item;
+                        }
+                    });
                     authRoom.remove();
                     tr.children().show();
 
@@ -37,7 +42,7 @@ angular.module('app.directives', []).
                         var angularElement = angular.element(tpl);
                         var compiled = $compile(angularElement);
 
-                        tr = element.find('[data-index=' + value + ']');
+                        tr = element.find('[data-id=' + value + ']');
                         tr.children().hide();
                         tr.append(angularElement);
                         compiled($scope);
