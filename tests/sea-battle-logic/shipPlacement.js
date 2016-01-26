@@ -6,7 +6,7 @@
 
 var assert = require("assert");
 
-var GameEngine = require("../../modules/sea-battle-core/GameEngine");
+var {CellState, GameEngine} = require("../../modules/sea-battle-core");
 
 const player1 = "12345678";
 const player2 = "87654321";

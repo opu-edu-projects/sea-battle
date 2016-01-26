@@ -16,6 +16,7 @@ class GameEngine {
 
     initGameField(ships, playerId) {
 
+        return true;
     }
 
     /**
